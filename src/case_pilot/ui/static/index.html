@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Pilot — AI surgical case intake for radiolucent implants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%2314b8a6'/></svg>">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Case Pilot</span>
+    </a>
+    <nav class="topnav">
+      <a href="#workbench" data-scroll>Workbench</a>
+      <a href="#about" data-scroll>About</a>
+      <a href="/docs" target="_blank">API</a>
+    </nav>
+    <span class="mode-pill" id="mode-pill">
+      <span class="mode-dot"></span>
+      <span id="mode-text">loading</span>
+    </span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Portfolio demo · for icotec medical</p>
+    <h1 class="hero-title">
+      Surgical case intake,<br>
+      <span class="grad">AI-structured in seconds.</span>
+    </h1>
+    <p class="hero-sub">
+      Turn a surgeon's free-text case description into a <strong>structured case record</strong> with
+      cited indication checks, recommended <strong>BlackArmor® implant configuration</strong>,
+      imaging-benefit rating, and MDR/FDA compliance flags. Built on Claude Sonnet 4.6 with Agentic
+      RAG over a synthetic icotec product and compliance corpus.
+    </p>
+    <div class="hero-ctas">
+      <a href="#workbench" class="btn-primary" data-scroll>Try a case</a>
+      <a href="/docs" target="_blank" class="btn-ghost">API docs</a>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-label">Corpus</span>
+        <span class="stat-value" id="stat-corpus">…</span>
+        <span class="stat-help">chunks indexed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Model</span>
+        <span class="stat-value mono" id="stat-model">…</span>
+        <span class="stat-help">via Anthropic SDK</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Cost / case</span>
+        <span class="stat-value">~$0.06</span>
+        <span class="stat-help">at Sonnet 4.6 pricing</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Latency</span>
+        <span class="stat-value">~10s</span>
+        <span class="stat-help">retrieve → draft</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workbench">
+  <div class="container">
+    <div class="section-head">
+      <h2>Case workbench</h2>
+      <p>Pick a sample case or paste your own free-text. The agent retrieves IFU, surgical technique,
+      compliance docs, and prior cases — then drafts a structured record you can review.</p>
+    </div>
+
+    <div class="workbench">
+      <div class="pane input-pane">
+        <header class="pane-head">
+          <h3>Incoming case</h3>
+          <span class="muted">From OR booking / surgeon's free text</span>
+        </header>
+
+        <div class="field">
+          <label>Sample case</label>
+          <select id="case-sample"></select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Case ID</label>
+            <input id="case-id" type="text">
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input id="case-date" type="text">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Submitted by</label>
+            <input id="case-submitter" type="text">
+          </div>
+          <div class="field">
+            <label>Site</label>
+            <input id="case-site" type="text">
+          </div>
+        </div>
+        <div class="field">
+          <label>Case description</label>
+          <textarea id="case-description" rows="9"></textarea>
+        </div>
+
+        <button id="case-submit" class="btn-primary btn-full">
+          <span class="btn-text">Intake case</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+        <div id="case-status" class="status" hidden></div>
+      </div>
+
+      <div class="pane output-pane">
+        <div class="empty-state" id="case-empty">
+          <div class="empty-icon">↗</div>
+          <h4>Awaiting case</h4>
+          <p>Click <em>Intake case</em> to watch the agent retrieve from the icotec corpus, check
+          indications, rate imaging benefit, and draft a structured case record with citations.</p>
+        </div>
+        <div id="case-result" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="about">
+  <div class="container about-grid">
+    <div>
+      <h2>How it maps to icotec's stack</h2>
+      <p class="muted">Every component in this demo has a 1:1 production target inside a Microsoft
+        Power Platform / Azure environment. The agent loop and corpus contract stay; the surfaces
+        change.</p>
+    </div>
+    <table class="map-table">
+      <thead><tr><th>This demo</th><th>icotec production target</th></tr></thead>
+      <tbody>
+        <tr><td>Anthropic SDK + Claude Sonnet 4.6</td><td>Azure OpenAI (gpt-4.x) via Power Platform AI Builder</td></tr>
+        <tr><td>BM25 over markdown corpus</td><td>Azure AI Search / SharePoint Search on a Document Library</td></tr>
+        <tr><td>FastAPI + Pydantic backend</td><td>Power Automate + custom connector to Azure Function</td></tr>
+        <tr><td>This single-page UI</td><td>Power Apps canvas app, embedded in Dynamics 365 / Teams</td></tr>
+        <tr><td>JSONL traces on disk</td><td>App Insights → Azure Data Explorer / Fabric</td></tr>
+        <tr><td>Synthetic corpus</td><td>icotec IFU, surgical guides, prior cases in SharePoint + Dataverse</td></tr>
+        <tr><td>Visitor-notify webhook</td><td>Power Automate flow → Outlook / Teams alert</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>Case Pilot v0.1.0 · <span id="footer-mode">…</span></span>
+    <span>
+      <a href="/healthz" target="_blank">/healthz</a> ·
+      <a href="/api" target="_blank">/api</a> ·
+      <a href="/docs" target="_blank">/docs</a>
+    </span>
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

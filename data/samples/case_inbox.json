@@ -1,0 +1,37 @@
+[
+  {
+    "case_id": "CASE-2026-051",
+    "submitted_by": "Dr. M. Khoury (Boston Spine Center)",
+    "date": "2026-05-22",
+    "site": "Boston Spine Center",
+    "description": "55F with newly diagnosed T8 metastatic breast carcinoma. Pathologic compression fracture with 30% loss of vertebral height and posterior element involvement. MRI shows soft tissue extension into right T7-T8 neural foramen. Patient ECOG 1, hormone receptor positive, life expectancy >12 months. Oncology has planned 30 Gy / 10 fx SBRT starting 3-4 weeks post-fixation. Surgeon plans T6-T10 posterior instrumented fusion with decompression at T8. Question: implant configuration that preserves post-op imaging quality for both the radiation planning CT and serial surveillance MRI."
+  },
+  {
+    "case_id": "CASE-2026-052",
+    "submitted_by": "Dr. J. Lim (Mid-Atlantic Spine Group)",
+    "date": "2026-05-22",
+    "site": "Mid-Atlantic Spine Group",
+    "description": "58M with chronic low back pain, L4-5 grade 1 degenerative spondylolisthesis on flexion-extension films, multilevel DDD L3-S1. Failed 18 months PT, ESI, RFA. No oncology, no radiation, no serial MRI planned. Surgeon considering BlackArmor primarily for fusion-mass visualization on follow-up CT (he's frustrated with titanium streak artifact masking cage subsidence). Question: is this an appropriate indication? Suggest screw and rod configuration for L4-S1 fusion."
+  },
+  {
+    "case_id": "CASE-2026-053",
+    "submitted_by": "Dr. R. Sato (Level 1 Trauma)",
+    "date": "2026-05-23",
+    "site": "Level 1 Trauma Center",
+    "description": "32M MVA. T12 burst fracture AOSpine A4 with 60% canal compromise and 25 degrees kyphosis. Concomitant moderate TBI with cerebral contusions requiring serial brain MRI surveillance over 30 days. ICU stable. Surgeon plans T10-L2 posterior instrumented fusion with indirect decompression. Question: confirm BlackArmor is the right choice given serial MRI need; suggest configuration and any cement augmentation considerations (he is concerned about pedicle quality at T10)."
+  },
+  {
+    "case_id": "CASE-2026-054",
+    "submitted_by": "Dr. A. Chen (Children's Hospital)",
+    "date": "2026-05-23",
+    "site": "Children's Hospital",
+    "description": "11-year-old female with progressive adolescent idiopathic scoliosis, Cobb 52 degrees, Risser 1. Surgeon planning posterior spinal fusion T4-L3 with selective thoracic instrumentation. Asking about BlackArmor — she likes the imaging properties for future surveillance and avoiding metal in a pediatric patient. Question: is BlackArmor indicated for this case?"
+  },
+  {
+    "case_id": "CASE-2026-055",
+    "submitted_by": "Dr. K. Bauer (Cervical Spine Specialist)",
+    "date": "2026-05-23",
+    "site": "Outpatient Clinic",
+    "description": "47M, C5-C6 herniated disc with radiculopathy, failed conservative care. Surgeon asking whether BlackArmor pedicle screws can be used for posterior cervical fixation in this case, citing the imaging benefit. Patient has a known history of cervical schwannoma that was resected 3 years ago and is being monitored with annual MRI."
+  }
+]

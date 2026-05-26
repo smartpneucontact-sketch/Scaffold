@@ -1,0 +1,1 @@
+web: PYTHONPATH=src uvicorn case_pilot.api.main:app --host 0.0.0.0 --port ${PORT:-8000}
