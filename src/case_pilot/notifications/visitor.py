@@ -109,7 +109,7 @@ async def _send_via_resend(subject: str, body: str) -> dict[str, Any]:
         return {"ok": False, "error": type(e).__name__, "detail": str(e)}
 
 
-async def _notify(ip: str, user_agent: str, path: str, referer: str) -> None:
+async def _notify(ip: str, user_agent: str, path: str, referer: str, host: str = "") -> None:
     info = await _lookup_ip(ip)
     org = info.get("org") or info.get("asn") or ""
     city = info.get("city") or ""
@@ -118,10 +118,11 @@ async def _notify(ip: str, user_agent: str, path: str, referer: str) -> None:
     location = ", ".join(p for p in (city, region, country) if p) or "unknown"
 
     label = org or location or ip
-    subject = f"Case Pilot visit: {label}"
+    full_url = f"https://{host}{path}" if host else path
+    subject = f"[Case Pilot] visit from {label}"
     body = (
-        "A visitor opened the Case Pilot demo.\n\n"
-        f"Path:      {path}\n"
+        "Case Pilot — icotec medical demo · new visitor.\n\n"
+        f"URL:       {full_url}\n"
         f"IP:        {ip}\n"
         f"Location:  {location}\n"
         f"Org:       {org or 'unknown'}\n"
@@ -154,8 +155,12 @@ async def maybe_notify_visitor(request: Any, path: str) -> None:
         for k in [k for k, v in _seen_ips.items() if v < cutoff]:
             _seen_ips.pop(k, None)
     referer = request.headers.get("referer", "")
+    host = (
+        request.headers.get("x-forwarded-host", "")
+        or request.headers.get("host", "")
+    )
     print(f"[case-pilot] visitor: queued notify for ip={ip}", flush=True)
-    asyncio.create_task(_notify(ip, ua, path, referer))
+    asyncio.create_task(_notify(ip, ua, path, referer, host))
 
 
 def diagnostic_status() -> dict[str, Any]:
