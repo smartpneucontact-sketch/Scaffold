@@ -155,7 +155,10 @@ def build() -> Path:
                    "Case Pilot — AI Surgical Case Intake & Implant Configuration",
                    "2026",
                    [
-                       ("github.com/[your-handle]/case-pilot", "https://github.com/"),
+                       ("scaffold-production-95fb.up.railway.app",
+                        "https://scaffold-production-95fb.up.railway.app"),
+                       ("github.com/smartpneucontact-sketch/Scaffold",
+                        "https://github.com/smartpneucontact-sketch/Scaffold"),
                    ])
     bullets(pdf, [
         "Built end-to-end AI prototype: free-text surgical case description goes in, structured "
