@@ -155,8 +155,8 @@ def build() -> Path:
                    "Case Pilot — AI Surgical Case Intake & Implant Configuration",
                    "2026",
                    [
-                       ("scaffold-production-95fb.up.railway.app",
-                        "https://scaffold-production-95fb.up.railway.app"),
+                       ("scaffold-production-3492.up.railway.app",
+                        "https://scaffold-production-3492.up.railway.app"),
                        ("github.com/smartpneucontact-sketch/Scaffold",
                         "https://github.com/smartpneucontact-sketch/Scaffold"),
                    ])

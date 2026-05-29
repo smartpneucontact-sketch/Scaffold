@@ -200,8 +200,8 @@ def build() -> Path:
 
     hero_link_card(
         pdf,
-        primary_url="https://scaffold-production-95fb.up.railway.app",
-        primary_display="scaffold-production-95fb.up.railway.app",
+        primary_url="https://scaffold-production-3492.up.railway.app",
+        primary_display="scaffold-production-3492.up.railway.app",
         sub_lines=[
             ("Source code", "github.com/smartpneucontact-sketch/Scaffold",
              "https://github.com/smartpneucontact-sketch/Scaffold"),
